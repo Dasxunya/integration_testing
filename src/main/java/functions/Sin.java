@@ -5,8 +5,8 @@ import utils.Calculatable;
 
 public class Sin implements Calculatable {
     public double calculate(double x, double eps) throws AccuracyException, ArithmeticException {
-        if (Math.abs(eps) >= 1)
-            throw new AccuracyException("Проверьте, что значение eps удовлетворяет условию: -1 < eps < 1");
+        if (eps <= 0 || eps >= 1)
+            throw new AccuracyException("Проверьте, что значение eps удовлетворяет условию: 0 < eps < 1");
         else if (Double.POSITIVE_INFINITY == x || Double.NEGATIVE_INFINITY == x)
             throw new ArithmeticException("x не может быть +∞ или -∞");
 
