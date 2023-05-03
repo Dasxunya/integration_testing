@@ -19,21 +19,18 @@ public class Sin implements Calculatable {
         else if (Math.abs(x) == Math.PI / 2) return 1;
         else if (Math.abs(x) == Math.PI / 2 * 3) return -1;
 
+        int n = 1;
         BigDecimal result = BigDecimal.ZERO;
         BigDecimal term = BigDecimal.valueOf(x);
-        int n = 1;
+        BigDecimal prev;
 
         do{
+            prev = result;
             result = result.add(term);
-            term = term.multiply(BigDecimal.valueOf(-1 * x * x)).divide(BigDecimal.valueOf(2 * n), 30, RoundingMode.HALF_UP).divide(BigDecimal.valueOf(2 * n + 1), 30, RoundingMode.HALF_UP);
+            term = term.multiply(BigDecimal.valueOf(-1 * x * x)).divide(BigDecimal.valueOf(4.0 * n * n + 2 * n), 30, RoundingMode.HALF_UP);
             n++;
-        } while(term.abs().compareTo(BigDecimal.valueOf(eps)) >= 0);
+        } while (result.subtract(prev).abs().compareTo(BigDecimal.valueOf(eps)) > 0);
 
-//        while (Math.abs(term) >= eps) {
-//            result += term;
-//            term = -term * x * x / (2 * n) / (2 * n + 1);
-//            n++;
-//        }
         return result.doubleValue();
     }
 
