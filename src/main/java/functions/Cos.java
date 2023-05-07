@@ -26,7 +26,7 @@ public class Cos implements Calculatable {
         final MathContext mathContext = new MathContext(DECIMAL128.getPrecision(), HALF_EVEN);
         BigDecimal withoutSign = BigDecimal.ONE.subtract(BigDecimal.valueOf(sin.calculate(x, eps)).pow(2)).sqrt(mathContext).abs();
 
-        if (x > Math.PI / 2 && x < 3 * Math.PI / 2) {
+        if (Math.abs(x) > Math.PI / 2 && Math.abs(x) < 3 * Math.PI / 2) {
             return withoutSign.multiply(BigDecimal.valueOf(-1)).doubleValue();
         } else {
             return withoutSign.doubleValue();
