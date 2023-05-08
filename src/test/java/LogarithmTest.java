@@ -14,7 +14,7 @@ public class LogarithmTest {
     @Test
     @DisplayName("Tests with Ln-Mock")
     public void testLog() {
-        Ln ln = Mockito.spy(new Ln());
+        Ln ln = Mockito.spy(Ln.class);
         Log2 log2 = new Log2(ln);
         Log3 log3 = new Log3(ln);
         Log10 log10 = new Log10(ln);
