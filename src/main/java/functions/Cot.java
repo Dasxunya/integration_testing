@@ -26,12 +26,8 @@ public class Cot implements Calculatable {
         this.cos = new Cos(sin);
     }
     public double calculate(double x, double eps) throws AccuracyException, ArithmeticException {
-        double DELTA = .1e-5;
-
         BigDecimal calculatedSin = BigDecimal.valueOf(sin.calculate(x, eps));
         if (calculatedSin.compareTo(BigDecimal.ZERO) == 0) return Double.NaN;
-        else if (Math.abs(x - Math.PI) <= DELTA || Math.abs(x - 2 * Math.PI) <= DELTA)
-            return Double.NaN;
         else {
             BigDecimal calculatedCos = BigDecimal.valueOf(cos.calculate(x, eps));
             return calculatedCos.divide(calculatedSin, 30, HALF_EVEN).doubleValue();
