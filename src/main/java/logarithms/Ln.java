@@ -8,7 +8,7 @@ import java.math.RoundingMode;
 
 public class Ln implements Calculatable {
     public double calculate(double x, double eps) throws AccuracyException, ArithmeticException {
-        if (eps <= 0 || eps >= 1)
+        if (eps <= -1 || eps >= 1)
             throw new AccuracyException("Проверьте, что значение eps удовлетворяет условию: 0 < eps < 1");
         else if (x <= 0 && x != Double.NEGATIVE_INFINITY) return Double.NaN;
         else if (Double.POSITIVE_INFINITY == x || Double.NEGATIVE_INFINITY == x) return Double.NaN;
