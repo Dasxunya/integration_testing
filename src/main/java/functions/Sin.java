@@ -16,15 +16,15 @@ public class Sin implements Calculatable {
         x = normalizeAngle(x);
 
         if (Math.abs(x) == Math.PI || Math.abs(x) == Math.PI * 2) return 0;
-        else if (Math.abs(x) == Math.PI / 2) return 1;
-        else if (Math.abs(x) == Math.PI / 2 * 3) return -1;
+        else if (x == Math.PI / 2 || x == -3 * Math.PI / 2) return 1;
+        else if (x == Math.PI / 2 * 3 || x == -Math.PI / 2) return -1;
 
         int n = 1;
         BigDecimal result = BigDecimal.ZERO;
         BigDecimal term = BigDecimal.valueOf(x);
         BigDecimal prev;
 
-        do{
+        do {
             prev = result;
             result = result.add(term);
             term = term.multiply(BigDecimal.valueOf(-1 * x * x)).divide(BigDecimal.valueOf(4.0 * n * n + 2 * n), 30, RoundingMode.HALF_UP);
