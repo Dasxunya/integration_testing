@@ -12,25 +12,25 @@ public class LogarithmTest {
     private static final double DELTA = 0.0001;
 
     @Test
-    @DisplayName("Tests with Ln Mock")
+    @DisplayName("Tests with Ln-Mock")
     public void testLog() {
         Ln ln = Mockito.spy(new Ln());
         Log2 log2 = new Log2(ln);
         Log3 log3 = new Log3(ln);
         Log10 log10 = new Log10(ln);
 
-        Mockito.when(ln.calculate(eq(-2),anyDouble())).thenReturn(Double.NaN);
-        Mockito.when(ln.calculate(eq(0), anyDouble())).thenReturn(Double.NaN);
-        Mockito.when(ln.calculate(eq(Math.E), anyDouble())).thenReturn(1.0d);
+        Mockito.when(ln.calculate(eq(-2d),anyDouble())).thenReturn(Double.NaN);
+        Mockito.when(ln.calculate(eq(0d), anyDouble())).thenReturn(Double.NaN);
+        Mockito.when(ln.calculate(eq(Math.E), anyDouble())).thenReturn(1.0);
 
         Mockito.when(ln.calculate(eq(0.1), anyDouble())).thenReturn(-2.3025);
-        Mockito.when(ln.calculate(eq(0.3333), anyDouble())).thenReturn(-1.0987);
-        Mockito.when(ln.calculate(eq(0.5), anyDouble())).thenReturn(-0.6931);
+        Mockito.when(ln.calculate(eq((double) 1 / 3), anyDouble())).thenReturn(-1.098612);
+        Mockito.when(ln.calculate(eq(0.5), anyDouble())).thenReturn(-0.69314718056);
 
-        Mockito.when(ln.calculate(eq(1), anyDouble())).thenReturn(0.0d);
-        Mockito.when(ln.calculate(eq(2), anyDouble())).thenReturn(0.6932);
-        Mockito.when(ln.calculate(eq(3), anyDouble())).thenReturn(1.0986);
-        Mockito.when(ln.calculate(eq(10), anyDouble())).thenReturn(2.3025);
+        Mockito.when(ln.calculate(eq(1d), anyDouble())).thenReturn(0.0);
+        Mockito.when(ln.calculate(eq(2d), anyDouble())).thenReturn(0.6932);
+        Mockito.when(ln.calculate(eq(3d), anyDouble())).thenReturn(1.0986);
+        Mockito.when(ln.calculate(eq(10d), anyDouble())).thenReturn(2.3025);
 
 
         //check log2
@@ -40,7 +40,7 @@ public class LogarithmTest {
         assertEquals(0.5, log2.calculate(Math.sqrt(2), DELTA), DELTA);
         assertEquals(1, log2.calculate(2, DELTA), DELTA);
         assertEquals(-1, log2.calculate(0.5, DELTA), DELTA);
-        assertEquals(1.44269504, log2.calculate(Math.E, DELTA), DELTA);
+        assertEquals(1.4426, log2.calculate(Math.E, DELTA), DELTA);
 
         //check log3
         assertEquals(Double.NaN, log3.calculate(-2, DELTA));
@@ -75,7 +75,7 @@ public class LogarithmTest {
     }
 
     @Test
-    @DisplayName("Test without ln-mock")
+    @DisplayName("Test without Ln-Mock")
     public void testWithoutMock(){
         Log2 log2 = new Log2();
         Log3 log3 = new Log3();
