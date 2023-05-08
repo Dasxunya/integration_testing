@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.eq;
 
-public class LogarithmsTest {
+public class LogarithmTest {
     private static final double DELTA = 0.0001;
 
     @Test
@@ -77,10 +77,9 @@ public class LogarithmsTest {
     @Test
     @DisplayName("Test without ln-mock")
     public void testWithoutMock(){
-        Ln ln = Mockito.spy(new Ln());
-        Log2 log2 = new Log2(ln);
-        Log3 log3 = new Log3(ln);
-        Log10 log10 = new Log10(ln);
+        Log2 log2 = new Log2();
+        Log3 log3 = new Log3();
+        Log10 log10 = new Log10();
 
         //check log2
         assertEquals(Double.NaN, log2.calculate(-2, DELTA));
