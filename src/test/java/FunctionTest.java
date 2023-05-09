@@ -375,5 +375,8 @@ public class FunctionTest {
     public void testTan() {
         FunctionsSystem system = new FunctionsSystem();
         assertEquals(Double.NaN, system.calculate(-Math.PI, 0.000001));
+        assertEquals(Double.NaN, system.calculate(-2 * Math.PI, 0.000001));
+        assertEquals(Double.NaN, system.calculate(- 4 *Math.PI, 0.000001));
+        assertEquals(Double.NaN, system.calculate(- 3 * Math.PI, 0.000001));
     }
 }
