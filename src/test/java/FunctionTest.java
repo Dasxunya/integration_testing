@@ -1,6 +1,7 @@
 import logarithms.*;
 import functions.*;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mockito;
@@ -130,10 +131,10 @@ public class FunctionTest {
 
         FunctionsSystem system = new FunctionsSystem();
         double DELTA = Math.abs(Math.abs(expectedResult / 1000));
-        if (!Double.isNaN(expectedResult)){
-            assertEquals(expectedResult, system.calculate(x, 0.000001), DELTA);assertEquals(Double.NaN, system.calculate(0, 0.0001));
-        }
-        else {
+        if (!Double.isNaN(expectedResult)) {
+            assertEquals(expectedResult, system.calculate(x, 0.000001), DELTA);
+            assertEquals(Double.NaN, system.calculate(0, 0.0001));
+        } else {
             assertEquals(expectedResult, system.calculate(x, 0.000001), 0.00001);
             assertEquals(Double.NaN, system.calculate(0, 0.0001));
         }
@@ -281,10 +282,10 @@ public class FunctionTest {
 
         FunctionsSystem system = new FunctionsSystem(cos, sin, cot, tan, csc, sec, ln, log2, log3, log10);
         double DELTA = Math.abs(Math.abs(expectedResult / 1000));
-        if (!Double.isNaN(expectedResult)){
-            assertEquals(expectedResult, system.calculate(x, 0.000001), DELTA);assertEquals(Double.NaN, system.calculate(0, 0.0001));
-        }
-        else {
+        if (!Double.isNaN(expectedResult)) {
+            assertEquals(expectedResult, system.calculate(x, 0.000001), DELTA);
+            assertEquals(Double.NaN, system.calculate(0, 0.0001));
+        } else {
             assertEquals(expectedResult, system.calculate(x, 0.000001), 0.00001);
             assertEquals(Double.NaN, system.calculate(0, 0.0001));
         }
@@ -329,10 +330,10 @@ public class FunctionTest {
 
         FunctionsSystem system = new FunctionsSystem();
         double DELTA = Math.abs(Math.abs(expectedResult / 1000));
-        if (!Double.isNaN(expectedResult)){
-            assertEquals(expectedResult, system.calculate(x, 0.000001), DELTA);assertEquals(Double.NaN, system.calculate(0, 0.0001));
-        }
-        else {
+        if (!Double.isNaN(expectedResult)) {
+            assertEquals(expectedResult, system.calculate(x, 0.000001), DELTA);
+            assertEquals(Double.NaN, system.calculate(0, 0.0001));
+        } else {
             assertEquals(expectedResult, system.calculate(x, 0.000001), 0.00001);
             assertEquals(Double.NaN, system.calculate(0, 0.0001));
         }
@@ -360,12 +361,19 @@ public class FunctionTest {
     public void integrateTest(double x, double expectedResult) {
         FunctionsSystem system = new FunctionsSystem();
         double DELTA = Math.abs(Math.abs(expectedResult / 1000));
-        if (!Double.isNaN(expectedResult)){
-            assertEquals(expectedResult, system.calculate(x, 0.000001), DELTA);assertEquals(Double.NaN, system.calculate(0, 0.0001));
-        }
-        else {
+        if (!Double.isNaN(expectedResult)) {
+            assertEquals(expectedResult, system.calculate(x, 0.000001), DELTA);
+            assertEquals(Double.NaN, system.calculate(0, 0.0001));
+        } else {
             assertEquals(expectedResult, system.calculate(x, 0.000001), 0.00001);
             assertEquals(Double.NaN, system.calculate(0, 0.0001));
         }
-        }
     }
+
+    @Test
+    @DisplayName("check Tan")
+    public void testTan() {
+        FunctionsSystem system = new FunctionsSystem();
+        assertEquals(Double.NaN, system.calculate(-Math.PI, 0.000001));
+    }
+}
