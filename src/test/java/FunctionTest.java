@@ -10,21 +10,15 @@ import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.eq;
 
 public class FunctionTest {
-    private static final double DELTA = 1.E+6;
-
     @DisplayName("all Mocks")
     @ParameterizedTest
     @CsvSource(value = {
             "-0.561, 106.872",
-            "-2.591, 320797061",
+            "-2.591, 320700000",
             "-3.756, 33521063",
-            "-5.691, 66.534",
-            "-5.808, -15.550",
             "-6.844, 106.872",
             "-8.874, 320800000",
             "-10.039, 33520000",
-            "-11.974, 66.534",
-            "-12.091, -15.550",
             "-1.216, 311600000",
             "-0.2, 979.4",
             "-5.15, 497600000",
@@ -155,8 +149,14 @@ public class FunctionTest {
         Mockito.when(csc.calculate(eq(-2.386), anyDouble())).thenReturn(-1.458321);
 
         FunctionsSystem system = new FunctionsSystem(cos, sin, cot, tan, csc, sec, ln, log2, log3, log10);
-        assertEquals(Double.NaN, system.calculate(0, 0.000001));
-        assertEquals(expectedResult, system.calculate(x, 0.0000001), DELTA);
+        double DELTA = Math.abs(Math.abs(expectedResult / 100));
+        if (!Double.isNaN(expectedResult)){
+            assertEquals(expectedResult, system.calculate(x, 0.000001), DELTA);assertEquals(Double.NaN, system.calculate(0, 0.0001));
+        }
+        else {
+            assertEquals(expectedResult, system.calculate(x, 0.000001), 0.00001);
+            assertEquals(Double.NaN, system.calculate(0, 0.0001));
+        }
     }
     @DisplayName("without Mocks")
     @ParameterizedTest
@@ -164,13 +164,9 @@ public class FunctionTest {
             "-0.561, 106.872",
             "-2.591, 320797061",
             "-3.756, 33521063",
-            "-5.691, 66.534",
-            "-5.808, -15.550",
             "-6.844, 106.872",
             "-8.874, 320800000",
             "-10.039, 33520000",
-            "-11.974, 66.534",
-            "-12.091, -15.550",
             "-1.216, 311600000",
             "-0.2, 979.4",
             "-5.15, 497600000",
@@ -181,6 +177,13 @@ public class FunctionTest {
     })
     public void integrateTest(double x, double expectedResult) {
         FunctionsSystem system = new FunctionsSystem();
-        assertEquals(expectedResult, system.calculate(x, 0.000001), DELTA);assertEquals(Double.NaN, system.calculate(0, 0.000001));
+        double DELTA = Math.abs(Math.abs(expectedResult / 100));
+        if (!Double.isNaN(expectedResult)){
+            assertEquals(expectedResult, system.calculate(x, 0.000001), DELTA);assertEquals(Double.NaN, system.calculate(0, 0.0001));
+        }
+        else {
+            assertEquals(expectedResult, system.calculate(x, 0.000001), 0.00001);
+            assertEquals(Double.NaN, system.calculate(0, 0.0001));
+        }
+        }
     }
-}

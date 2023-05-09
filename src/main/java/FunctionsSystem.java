@@ -61,9 +61,9 @@ public class FunctionsSystem implements Calculatable {
                 double bracket1 = ((cosx / cosx) * cosx + cscx) / cosx;
                 double bracket2 = bracket1 + (cotx - cscx);
                 double bracket3 = Math.pow(bracket2 + (tanx - cscx), 3);
-                double bracket4 = bracket3 / cscx / (Math.pow(tanx * cotx, 2));
+                double bracket4 = (bracket3 / cscx) / (Math.pow(tanx * cotx, 2));
                 double bracket5 = bracket4 * sinx + tanx;
-                double bracket6 = bracket5 / Math.pow(cosx, 3) / (cosx / cotx);
+                double bracket6 = (bracket5 / Math.pow(cosx, 3)) / (cosx / cotx);
 
                 double bracket7 = bracket6 - (cotx + cscx);
                 double bracket8 = Math.pow(bracket7 - (Math.pow(cosx, 3)), 3);
