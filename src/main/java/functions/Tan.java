@@ -30,6 +30,7 @@ public class Tan implements Calculatable {
         BigDecimal calculatedCos = BigDecimal.valueOf(cos.calculate(x, eps / 10));
 
         if (calculatedCos.compareTo(BigDecimal.ZERO) == 0) return Double.NaN;
+        else if (Math.abs(x) == Math.PI || Math.abs(x) == 2 * Math.PI) return 0.0;
         else {
             BigDecimal calculatedSin = BigDecimal.valueOf(sin.calculate(x, eps));
             return calculatedSin.divide(calculatedCos, 30, HALF_EVEN).doubleValue();
